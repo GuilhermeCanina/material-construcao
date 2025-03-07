@@ -2,36 +2,36 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const read = async (req, res) => {
-    const clientes = await prisma.clientes.findMany();
-    return res.json(clientes)
+    const funcionarios = await prisma.funcionarios.findMany();
+    return res.json(funcionarios)
 }
 
 const create = async (req, res) => {
     const data = req.body;
-    const clientes = await prisma.clientes.create({
+    const funcionarios = await prisma.funcionarios.create({
         data: data
     });
-    return res.status(201).json(clientes).end()
+    return res.status(201).json(funcionarios).end()
 }
 
 const update = async (req, res) => {
     const data = req.body;
-    let clientes = await prisma.clientes.update({
+    let funcionarios = await prisma.funcionarios.update({
         data: data,
         where: {
-            id_clientes: parseInt(req.body.id_clientes)
+            id_funcionarios: parseInt(req.body.id_funcionarios)
         }
     })
-    return res.status(202).json(clientes).end()
+    return res.status(202).json(funcionarios).end()
 }
 
 const del = async (req, res) => {
-    const id_clientes = parseInt(req.params.id);
+    const id_funcionarios = parseInt(req.params.id);
 
     try {
-      const cliente = await prisma.clientes.delete({
+      const funcionarios = await prisma.funcionarios.delete({
         where: {
-          id_clientes: id_clientes,
+          id_funcionarios: id_funcionarios,
         },
       });
   
